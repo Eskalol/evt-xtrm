@@ -1,0 +1,223 @@
+swagger: "2.0"
+info:
+  version: "0.0.1"
+  title: Hello World App
+# during dev, should point to your local machine
+host: localhost:10010
+# basePath prefixes all resource paths 
+basePath: /
+# 
+schemes:
+  # tip: remove http to make production-grade
+  - http
+  - https
+# format of bodies a client can send (Content-Type)
+consumes:
+  - application/json
+# format of the responses to the client (Accepts)
+produces:
+  - application/json
+paths:
+  /api/event:
+    x-swagger-router-controller: event
+    get:
+      description: Returns a list of evnets
+      operationId: listEvents
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/EventListResponse"
+    post:
+      description: Create a new event
+      operationId: createEvent
+      parameters:
+        - name: title
+          in: formData
+          description: title of event
+          required: true
+          type: string
+        - name: description
+          in: formData
+          description: description of event
+          required: true
+          type: string
+        - name: date
+          in: formData
+          description: date of event
+          type: string
+          format: date
+          required: true
+        - name: limit
+          in: formData
+          description: max amount of participants
+          type: integer
+          required: false
+      responses:
+        "201":
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+          
+  /api/event/{id}:
+    x-swagger-router-controller: event
+    get:
+      description: Returns an event
+      operationId: getEventById
+      parameters:
+        - name: id
+          in: path
+          description: event id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/EventResponse"
+        
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/EventErrorResponse"
+  /api/participant/{event}:
+    x-swagger-router-controller: participant
+    get:
+      description: Lists all participants of an event
+      parameters:
+        - name: event
+          in: path
+          description: event id
+          required: true
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ParticipantListResponse"
+  
+  
+  /hello:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: hello_world
+    get:
+      description: Returns 'Hello' to the caller
+      # used as the method name of the controller
+      operationId: hello
+      parameters:
+        - name: name
+          in: query
+          description: The name of the person to whom to say hello
+          required: false
+          type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/HelloWorldResponse"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  EventResponse:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      title:
+        type: string
+      description:
+        type: string
+      date:
+        type: string
+        format: date
+      limit:
+        type: integer
+      __v:
+        type: integer
+  
+  EventErrorResponse:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+
+  EventListResponse:
+    required:
+      - events
+    properties:
+      events:
+        type: array
+        items:
+          type: object
+          properties:
+            _id:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            date:
+              type: string
+              format: date
+            limit:
+              type: integer
+            __v:
+              type: integer
+  
+  ParticipantListResponse:
+    required:
+      - participants
+    properties:
+      participants:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: string
+            event:
+              type: string
+  
+  ParticipantResponse:
+    required:
+      - id
+    properties:
+      id:
+        type: string
+      event:
+        type: string
+  
+  GeneralResponse:
+    type: object
+    properties:
+      success:
+        type: number
+        description: returns 1 if successful
+      description:
+        type: string
+        description: a short comment 
+    required:
+      - success
+      - description
+      
+  HelloWorldResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
