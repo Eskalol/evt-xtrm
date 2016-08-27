@@ -1,1 +1,1 @@
-# Skeleton project for Swagger
+Cool project with swagger!
