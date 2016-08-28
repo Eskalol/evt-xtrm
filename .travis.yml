@@ -1,6 +1,5 @@
 language: node_js
 node_js:
 - "node"
-script: make test-coveralls
 before_install:
 - npm install -g swagger
