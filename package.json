@@ -14,8 +14,8 @@
     "mongoose-auto-increment": "~5.0.1"
   },
   "devDependencies": {
-    "should": "^7.1.0",
-    "supertest": "^1.0.0"
+    "should": "^11.1.0",
+    "supertest": "^2.0.0"
   },
   "scripts": {
     "start": "node app.js",
