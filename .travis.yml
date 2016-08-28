@@ -1,7 +1,6 @@
 language: node_js
 node_js:
 - "node"
-- latest
+- "latest"
 script: make test-coveralls
-before_install:
-- npm install -g swagger
+after_script: ./node_modules/coveralls/bin/coveralls.js
