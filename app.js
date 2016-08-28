@@ -4,7 +4,15 @@ var SwaggerRestify = require('swagger-restify-mw');
 var restify = require('restify');
 var app = restify.createServer();
 
+
+
 module.exports = app; // for testing
+
+
+app.use(function foo(req, res, next) {
+	console.log(req.param);
+	next();
+});
 
 var config = {
   appRoot: __dirname // required config

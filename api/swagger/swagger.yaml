@@ -46,7 +46,7 @@ paths:
           in: formData
           description: date of event
           type: string
-          format: date
+          format: date-time
           required: true
         - name: limit
           in: formData
@@ -137,7 +137,7 @@ definitions:
         type: string
       date:
         type: string
-        format: date
+        format: date-time
       limit:
         type: integer
       __v:
@@ -167,7 +167,7 @@ definitions:
               type: string
             date:
               type: string
-              format: date
+              format: date-time
             limit:
               type: integer
             __v:
