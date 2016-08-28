@@ -14,8 +14,9 @@ function listEvents(req, res) {
 	models.event.find({}, function (error, doc) {
 		if (!error) {
 			res.json({ events: doc });
+		} else {
+			res.json({ error: 'could not list events'});
 		}
-		res.json({events: models.event});
 	});
 }
 
@@ -31,13 +32,13 @@ function createEvent(req, res) {
 }
 
 function getEventById(req, res) {
-
+	console.log(req.swagger);
 	models.event.findOne({ _id: req.swagger.params.id.value }, function (error, doc) {
 		if(!error && doc) {
+			console.log(doc);
 			res.json(doc);
 		} else {
 			res.json({ id: 'could not find event' })
 		}
 	});
 }
-

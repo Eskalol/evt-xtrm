@@ -13,6 +13,7 @@ $ npm install
 
 Run swagger and swagger browser:
 ```{r, engine='bash', count_lines}
-swagger project start
-swagger project edit
+$ swagger project start
+$ swagger project edit
 ```
+Check the issue tracker.
