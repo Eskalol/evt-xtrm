@@ -44,7 +44,7 @@ server.get(...
 # Environment variables
 Here is a list of environment variables you could set
 ```{r, engine='bash', count_lines}
-$ export process.env.PORT=[Port to listen on]
+$ export PORT=[Port to listen on]
 $ export FACEBOOK_APPID=[AppID]
 $ export FACEBOOK_APPSECRET=[AppSecret]
 ```
