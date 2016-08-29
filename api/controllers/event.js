@@ -23,7 +23,7 @@ function listEvents(req, res) {
 		'_id title description limit date',
 		function (err, events) {
 			if (err || !events) { return res.send(400, { message: 'could not list events' }); }
-			else { return res.json(200, { events: events }); }
+			else { return res.send(200, { events: events }); }
 		}
 	);
 }
