@@ -1,4 +1,4 @@
-"use strict";
+
 var SwaggerRestify = require('swagger-restify-mw');
 var restify = require('restify');
 var server = restify.createServer();
@@ -28,7 +28,7 @@ var permission = require('./auth/permission');
  * @return {server}        restify server is returned
  */
 module.exports = function (config) {
-	
+
 	if (config.passport.enable) {
 		require('./auth/handleError')(server);
 		require('./auth/auth')(server, config.passport.secret || 'key-board-cat');
@@ -48,11 +48,11 @@ module.exports = function (config) {
 	}
 
 
-	var config = {
+	var conf = {
   		appRoot: __dirname // required config
 	};
 
-	SwaggerRestify.create(config, function(err, swaggerRestify) {
+	SwaggerRestify.create(conf, function(err, swaggerRestify) {
 	  if (err) { throw err; }
 
 	  swaggerRestify.register(server);
@@ -63,4 +63,4 @@ module.exports = function (config) {
 	});
 
 	return server;
-}
+};

@@ -1,6 +1,7 @@
-"use strict";
+
 
 module.exports = require('./index')({
+
   passport: {
     enable: true,
     permissionSecurity: true,
