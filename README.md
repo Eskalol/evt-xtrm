@@ -38,3 +38,17 @@ $ swagger project start
 $ swagger project edit
 ```
 Check the issue tracker.
+
+## Tips
+1. When playing with swagger it's recomended to use these settings:
+```js
+require('evt-xtrm')({
+	passport: {
+		enable: true,
+		permissionSecurity: false,
+		...
+	}
+})
+
+```
+Rest of the settings is optional, the reason why permissionSecurity should be set to false is because it is a custom middleware which is not integrated with swagger. This is just a temporary solution and will be fixed when swagger implement cookie session auth.
