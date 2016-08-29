@@ -27,7 +27,7 @@ paths:
       description: Returns a list of evnets
       operationId: listEvents
       responses:
-        "200":
+        200:
           description: Success
           schema:
             $ref: "#/definitions/EventListResponse"
@@ -182,8 +182,8 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/ParticipantListResponse"
-        400:
-          description: Bad request
+        404:
+          description: Not found
           schema:
             $ref: "#/definitions/ErrorResponse"
     
@@ -238,8 +238,97 @@ paths:
             $ref: "#/definitions/ErrorResponse"
   #######################
   # Participant API end
+  # user API start
   #########################
   
+  /api/users:
+    x-swagger-router-controller: user
+    get:
+      description: lists users
+      operationId: listUsers
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/UserListRespons"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  
+  /api/user/{id}:
+    x-swagger-router-controller: user
+    get:
+      description: gets a user by id
+      operationId: getUserById
+      parameters:
+        - name: id
+          in: path
+          description: id of user
+          required: true
+          type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/UserResponse"
+        404:
+          description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    
+    delete:
+      description: deletes a user by id
+      operationId: deleteUserById
+      parameters:
+        - name: id
+          in: path
+          description: id of user
+          required: true
+          type: string
+      responses: 
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/SuccessResponse"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        404:
+          description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+    
+    patch:
+      description: update permission on user
+      operationId: updateUserPermission
+      parameters:
+        - name: id
+          in: path
+          description: id of user
+          required: true
+          type: string
+        - name: permission
+          in: formData
+          description: new permission (standard, admin)
+          required: true
+          type: string
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/UserResponse"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        404:
+          description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        
+    
   /hello:
     # binds a127 app logic to a route
     x-swagger-router-controller: hello_world
@@ -341,8 +430,50 @@ definitions:
         type: integer
 #############
 ## participant defenitions end
-## common response
+## user defenitions start
 ##################
+  UserListRespons:
+    required:
+      - users
+    properties:
+      users:
+        type: array
+        items:
+          type: object
+          properties:
+            _id:
+              type: string
+            name:
+              type: string
+            email:
+              type: string
+            permission:
+              type: string
+            dateAdded:
+              type: string
+              format: date-time
+  
+  UserResponse:
+    required:
+      - _id
+    properties:
+      _id:
+        type: string
+      name:
+        type: string
+      email:
+        type: string
+      permission:
+        type: string
+      dateAdded:
+        type: string
+        format: date-time
+
+####################
+# user defenitions end
+# common response objects start
+###########################
+
   ErrorResponse:
     required:
       - message
