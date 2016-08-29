@@ -30,7 +30,7 @@ server = require('evt-xtrm')({
 		permissionSecurity: true,
 		secret: [your secret for passport],
 		facebook: {
-			enable: truem
+			enable: true,
 			AppID: [app id], //Option could be set in environment
 			AppSecret: [app secret] //Optional could be set in environment
 		},
