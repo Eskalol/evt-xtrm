@@ -6,5 +6,6 @@ services:
 before_install:
 - npm install -g swagger
 before_script:
+- export MONGO_URL="mongodb://localhost"
 - sleep 15
-- mongo evt-xtrem-db --eval 'db.addUser("test", "test");'
+
