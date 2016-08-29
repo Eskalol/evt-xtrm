@@ -1,9 +1,7 @@
-
 var SwaggerRestify = require('swagger-restify-mw');
 var restify = require('restify');
 var server = restify.createServer();
 var permission = require('./auth/permission');
-
 
 
 /**
