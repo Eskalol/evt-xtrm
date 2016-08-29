@@ -18,6 +18,9 @@ consumes:
 produces:
   - application/json
 paths:
+  #############################
+  # event API START
+  ############################
   /api/event:
     x-swagger-router-controller: event
     get:
@@ -28,6 +31,10 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/EventListResponse"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
     post:
       description: Create a new event admin permission only
       operationId: createEvent
@@ -54,10 +61,15 @@ paths:
           type: integer
           required: false
       responses:
-        "201":
+        201:
           description: Success
           schema:
-            $ref: "#/definitions/GeneralResponse"
+            $ref: "#/definitions/EventResponse"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        
           
           
   /api/event/{id}:
@@ -72,17 +84,18 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        200:
           description: Success
           schema:
             $ref: "#/definitions/EventResponse"
-        default:
-          description: Error
+        404:
+          description: Not found
           schema:
-            $ref: "#/definitions/EventErrorResponse"
+            $ref: "#/definitions/ErrorResponse"
     
     patch:
       description: partial update need admin permission only
+      operationId: updateEventById
       parameters:
         - name: id
           in: path
@@ -114,13 +127,21 @@ paths:
       responses:
         200:
           description: Success
-        default:
-          description: Error
           schema:
-            $ref: "#/definitions/EventErrorResponse"
+            $ref: "#/definitions/EventResponse"
+        404:
+          description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        400:
+          description: Bad requiest
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+          
     
     delete:
       description: deletes an event admin permission only
+      operationId: deleteEventById
       parameters:
         - name: id
           in: path
@@ -130,11 +151,20 @@ paths:
       responses:
         200:
           description: Success
-        default:
-          description: Error
           schema:
-            $ref: "#/definitions/EventErrorResponse"
-              
+            $ref: "#/definitions/SuccessResponse"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        404:
+          description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  ##############################
+  # event API end
+  # participant API start
+  ##################################
           
   /api/participant/{event}:
     x-swagger-router-controller: participant
@@ -147,10 +177,14 @@ paths:
           required: true
           type: string
       responses:
-        "200":
+        200:
           description: Success
           schema:
             $ref: "#/definitions/ParticipantListResponse"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
     
     post:
       description: Add participant to event
@@ -168,8 +202,11 @@ paths:
         200:
           description: Success
           schema:
-            $ref: "#/definitions/GeneralResponse"
-    
+            $ref: "#/definitions/ParticipantResponse"
+        400:
+          description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
     delete:
       description: remove participant from event
       parameters:
@@ -187,12 +224,18 @@ paths:
         200:
           description: Success
           schema:
-            $ref: "#/definitions/GeneralResponse"
-        default:
-          description: Error
+            $ref: "#/definitions/SuccessResponse"
+        400:
+          description: Bad request
           schema:
-            $ref: "#/definitions/EventErrorResponse"
-
+            $ref: "#/definitions/ErrorResponse"
+        404:
+          description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+  #######################
+  # Participant API end
+  #########################
   
   /hello:
     # binds a127 app logic to a route
@@ -222,6 +265,10 @@ paths:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
 definitions:
+
+####################
+### event definitions
+####################
   EventResponse:
     required:
       - _id
@@ -237,15 +284,6 @@ definitions:
         format: date-time
       limit:
         type: integer
-      __v:
-        type: integer
-  
-  EventErrorResponse:
-    required:
-      - id
-    properties:
-      id:
-        type: string
 
   EventListResponse:
     required:
@@ -267,9 +305,11 @@ definitions:
               format: date-time
             limit:
               type: integer
-            __v:
-              type: integer
-  
+
+#############
+## event defenitions end
+## participant defenitions start
+#########################
   ParticipantListResponse:
     required:
       - participants
@@ -279,40 +319,42 @@ definitions:
         items:
           type: object
           properties:
-            id:
+            _id:
               type: string
             event:
               type: string
-  
+            user:
+              type: integer
+              
   ParticipantResponse:
     required:
-      - id
+      - _id
     properties:
-      id:
+      _id:
         type: string
       event:
         type: string
-  
-  GeneralResponse:
-    type: object
-    properties:
-      success:
-        type: number
-        description: returns 1 if successful
-      description:
-        type: string
-        description: a short comment 
-    required:
-      - success
-      - description
-      
-  HelloWorldResponse:
+      user:
+        type: integer
+#############
+## participant defenitions end
+## common response
+##################
+  ErrorResponse:
     required:
       - message
     properties:
       message:
         type: string
-  ErrorResponse:
+  SuccessResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+        
+        
+  HelloWorldResponse:
     required:
       - message
     properties:

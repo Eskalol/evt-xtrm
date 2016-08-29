@@ -13,4 +13,5 @@ var participantSchema = mongoose.Schema({
 	user: { type: Number, ref: 'User', required: true}
 });
 participantSchema.plugin(autoIncrement.plugin, 'Participant');
+participantSchema.index({ event: 1, user: 1 }, { unique: true });
 module.exports = db.model('Participant', participantSchema);

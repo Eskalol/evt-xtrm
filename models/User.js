@@ -9,7 +9,7 @@ autoIncrement.initialize(db);
  */
 var userSchema = mongoose.Schema({
 	name: { type: String, required: true },
-	email: { type: String, required: true },
+	email: { type: String, required: true, unique: true },
 	provider: { type: String , required: true },
 	providerUserId: { type: String, required: true, unique: true },
 	accessToken: { type: String, required: true },
