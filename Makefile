@@ -1,7 +1,7 @@
 REPORTER = spec
 
 lint:
-	./node_modules/.bin/jshint ./test ./app.js ./index.js
+	./node_modules/.bin/jshint ./test ./app.js ./index.js ./api ./auth ./models ./config
 
 
 test:

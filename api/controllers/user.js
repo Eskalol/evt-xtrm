@@ -1,5 +1,3 @@
-'use strict';
-
 var User = require('../../models/User');
 
 module.exports = {
@@ -7,7 +5,7 @@ module.exports = {
 	getUserById: getUserById,
 	deleteUserById: deleteUserById,
 	updateUserPermission: updateUserPermission
-}
+};
 
 /**
  * lists all users
@@ -61,7 +59,7 @@ function deleteUserById(req, res) {
 	User.remove({
 		_id: req.swagger.params.id.value
 		}, function (err, status) {
-			if (status.result.n == 0 ) { return res.send(404, { message: 'User not found' }); }
+			if (status.result.n === 0 ) { return res.send(404, { message: 'User not found' }); }
 			else if (err) { return res.send(400, { message: 'could not delete user' }); }
 			else { return res.send(200, { message: 'removed user' }); }
 		}

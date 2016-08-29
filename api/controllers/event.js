@@ -1,5 +1,3 @@
-'use strict';
-
 var Event = require('../../models/Event');
 
 
@@ -107,7 +105,7 @@ function deleteEventById(req, res) {
 	Event.remove({
 		_id: req.swagger.params.id.value
 	}, function (err, status) {
-		if (status.result.n == 0 ) { return res.send(404, { message: 'Event not found' }); }
+		if (status.result.n === 0 ) { return res.send(404, { message: 'Event not found' }); }
 		else if (err) { return res.send(400, { message: 'could not delete event' }); }
 		else { return res.send(200, { message: 'removed event' }); }
 	});

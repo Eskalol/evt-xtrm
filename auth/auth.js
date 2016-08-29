@@ -40,8 +40,8 @@ module.exports = function (server, secret) {
 	    	if(!err && user) {
 	    		return done(null, user);
 	    	} else {
-	    		return done(null, false, { error: 'deserialization failed' })
+	    		return done(null, false, { error: 'deserialization failed' });
 	    	}
-	    })
+	    });
 	});
 };

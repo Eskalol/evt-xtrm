@@ -1,5 +1,3 @@
-'use strict';
-
 var Participant = require('../../models/Participant');
 
 
@@ -74,7 +72,7 @@ function deleteParticipantOnEvent(req, res) {
 		event: req.swagger.params.event.value,
 		user: req.body.user
 	}, function(err, status) {
-		if (status.result.n == 0) { return res.send(404, { message: 'user in event not found' }); }
+		if (status.result.n === 0) { return res.send(404, { message: 'user in event not found' }); }
 		else if (err) { res.send(400, { message: 'could not delete participant' }); }
 		else { return res.send(200, { message: 'removed participant' }); }
 	});
