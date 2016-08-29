@@ -6,7 +6,10 @@ var db = require('../config/db');
 
 autoIncrement.initialize(db);
 
-// Event
+/**
+ * Event schema
+ * @type {mongoose.Schema}
+ */
 var eventSchema = mongoose.Schema({
 	title: { type: String, required: true, unique: true },
 	description: { type: String, required: true },

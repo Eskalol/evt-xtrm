@@ -1,15 +1,25 @@
 'use strict';
-
 var SwaggerRestify = require('swagger-restify-mw');
 var restify = require('restify');
-var app = restify.createServer();
+var server = restify.createServer();
 
 
 
-module.exports = app; // for testing
+require('./auth/auth')(server, 'key-board-cat');
+
+//facebook config
+var facebook_config = {
+	clientID: "1739022963015334",
+	clientSecret: "1d4c2705545295207cc2257ccaa7b243"
+}
+//facebook passport
+require('./auth/facebook')(server, facebook_config);
 
 
-app.use(function foo(req, res, next) {
+module.exports = server; // for testing
+
+
+server.use(function foo(req, res, next) {
 	console.log(req.param);
 	next();
 });
@@ -21,10 +31,10 @@ var config = {
 SwaggerRestify.create(config, function(err, swaggerRestify) {
   if (err) { throw err; }
 
-  swaggerRestify.register(app);
+  swaggerRestify.register(server);
 
   var port = process.env.PORT || 10010;
-  app.listen(port);
+  server.listen(port);
 
   if (swaggerRestify.runner.swagger.paths['/hello']) {
     console.log('try this:\ncurl http://127.0.0.1:' + port + '/hello?name=Scott');

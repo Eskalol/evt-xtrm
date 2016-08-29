@@ -1,6 +1,6 @@
 'use strict';
 
-var event = require('../../models/Event');
+var Event = require('../../models/Event');
 
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
 };
 
 function listEvents(req, res) {
-	event.find({}, function (error, doc) {
+	Event.find({}, function (error, doc) {
 		if (!error) {
 			res.json({ events: doc });
 		} else {
@@ -20,7 +20,7 @@ function listEvents(req, res) {
 }
 
 function createEvent(req, res) {
-	event.create(req.body, function(error, doc) {
+	Event.create(req.body, function(error, doc) {
 		if (!error) {
 			res.json({ success: 1, description: 'event added' });
 		}
@@ -29,7 +29,7 @@ function createEvent(req, res) {
 }
 
 function getEventById(req, res) {
-	event.findOne({ _id: req.swagger.params.id.value }, function (error, doc) {
+	Event.findOne({ _id: req.swagger.params.id.value }, function (error, doc) {
 		if(!error && doc) {
 			res.json({
 				_id: doc._id,

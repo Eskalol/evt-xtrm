@@ -11,7 +11,11 @@
     "restify": "^4.0.2",
     "swagger-restify-mw": "^0.1.0",
     "mongoose": "~4.5.10",
-    "mongoose-auto-increment": "~5.0.1"
+    "mongoose-auto-increment": "~5.0.1",
+    "passport-facebook": "~2.1.1",
+    "restify-cookies": "~0.2.2",
+    "client-sessions": "~0.7.0",
+    "passport-restify": "~1.0.1"
   },
   "devDependencies": {
     "should": "^11.1.0",
