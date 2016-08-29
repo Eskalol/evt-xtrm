@@ -1,5 +1,10 @@
 language: node_js
 node_js:
 - "node"
+services:
+- mongodb
 before_install:
 - npm install -g swagger
+before_script:
+- sleep 15
+- mongo evt-xtrem-db --eval 'db.addUser("test", "test");'

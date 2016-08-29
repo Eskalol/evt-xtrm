@@ -1,12 +1,22 @@
 {
   "name": "evt-xtrm",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "private": true,
-  "description": "New Swagger API Project",
-  "keywords": [],
-  "author": "",
-  "license": "",
-  "main": "app.js",
+  "description": "Event xtreme mongoDB and rest api with swagger",
+  "keywords": [
+    "swagger",
+    "api",
+    "restify",
+    "mongoose",
+    "passport"
+  ],
+  "author": "Eskil Opdahl Nordland <eskil.nordland@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Eskalol/evt-xtrm"
+  },
   "dependencies": {
     "restify": "^4.0.2",
     "swagger-restify-mw": "^0.1.0",
@@ -23,6 +33,6 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "swagger project test"
+    "test": "npm test"
   }
 }

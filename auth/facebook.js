@@ -2,6 +2,7 @@ var passport = require('passport-restify');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var User = require('../models/User');
 
+
 /**
  * Initializes facebook passport
  *
@@ -11,11 +12,11 @@ var User = require('../models/User');
  * @param  {object} Json with clientid and secret
  * @return {[type]}
  */
-module.exports = function (server, config) {
+module.exports = function (server, config, baseURL) {
 	passport.use(new FacebookStrategy({
 		clientID: config.clientID,
 		clientSecret: config.clientSecret,
-		callbackURL: "http://localhost:10010/auth/facebook/callback",
+		callbackURL: baseURL+"/auth/facebook/callback",
 		profileFields: ['id', 'emails', 'displayName']
 		},
 		function (accessToken, refreshToken, profile, done) {
@@ -34,7 +35,6 @@ module.exports = function (server, config) {
 						accessToken: accessToken,
 						permission: 'standard'
 					}, function (err, user) {
-						console.log('created');
 						if (err) console.log(err);
 						return done(err, user);
 					});
@@ -50,8 +50,8 @@ module.exports = function (server, config) {
 
 	server.get('/auth/facebook/callback', passport.authenticate('facebook',
 		{
-			successRedirect: '/api/event',
-			failureRedirect: '/api/event/0'
+			successRedirect: '/',
+			failureRedirect: '/login'
 		}
 	));
 };
