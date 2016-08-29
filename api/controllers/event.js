@@ -60,7 +60,6 @@ function createEvent(req, res) {
  * @return {response}
  */
 function getEventById(req, res) {
-	console.log(req.swagger.params.id.value);
 	Event.findOne({ _id: req.swagger.params.id.value },
 		'_id title description limit date',
 		function (err, event) {

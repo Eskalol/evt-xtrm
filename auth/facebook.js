@@ -25,11 +25,7 @@ module.exports = function (server, config) {
 				if (err) {
 					return done(err);
 				}
-				console.log(profile);
-				console.log('wohoo');
-				console.log(user);
 				if (!user) {
-					console.log('lager bruker');
 					User.create({
 						name: profile.displayName,
 						email: profile.emails[0].value,
@@ -43,8 +39,6 @@ module.exports = function (server, config) {
 						return done(err, user);
 					});
 				} else {
-					console.log(user._id);
-					console.log(user.providerUserId);
 					return done(err, user);
 				}
 			});

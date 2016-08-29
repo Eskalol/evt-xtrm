@@ -2,27 +2,25 @@
 var SwaggerRestify = require('swagger-restify-mw');
 var restify = require('restify');
 var server = restify.createServer();
+var permission = require('./auth/permission');
+
+module.exports = server; // for testing
 
 
-
+require('./auth/handleError')(server);
 require('./auth/auth')(server, 'key-board-cat');
 
 //facebook config
 var facebook_config = {
-	clientID: "1739022963015334",
-	clientSecret: "1d4c2705545295207cc2257ccaa7b243"
+  clientID: "1739022963015334",
+  clientSecret: "1d4c2705545295207cc2257ccaa7b243"
 }
 //facebook passport
 require('./auth/facebook')(server, facebook_config);
 
 
-module.exports = server; // for testing
+server.use(permission.permissionSecurity());
 
-
-server.use(function foo(req, res, next) {
-	console.log(req.param);
-	next();
-});
 
 var config = {
   appRoot: __dirname // required config

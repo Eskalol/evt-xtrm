@@ -17,6 +17,7 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
+      
 paths:
   #############################
   # event API START
@@ -67,6 +68,10 @@ paths:
             $ref: "#/definitions/EventResponse"
         400:
           description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
           schema:
             $ref: "#/definitions/ErrorResponse"
         
@@ -137,6 +142,10 @@ paths:
           description: Bad requiest
           schema:
             $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
+          schema:
+            $ref: "#/definitions/ErrorResponse"
           
     
     delete:
@@ -159,6 +168,10 @@ paths:
             $ref: "#/definitions/ErrorResponse"
         404:
           description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
           schema:
             $ref: "#/definitions/ErrorResponse"
   ##############################
@@ -186,6 +199,10 @@ paths:
           description: Not found
           schema:
             $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
+          schema:
+            $ref: "#/definitions/ErrorResponse"
     
     post:
       description: Add participant to event
@@ -209,6 +226,11 @@ paths:
           description: Bad request
           schema:
             $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+            
     delete:
       description: remove participant from event
       operationId: deleteParticipantOnEvent
@@ -236,6 +258,10 @@ paths:
           description: Not found
           schema:
             $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   #######################
   # Participant API end
   # user API start
@@ -253,6 +279,10 @@ paths:
             $ref: "#/definitions/UserListRespons"
         400:
           description: Bad request
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
           schema:
             $ref: "#/definitions/ErrorResponse"
   
@@ -276,6 +306,10 @@ paths:
           description: Not found
           schema:
             $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
+          schema:
+            $ref: "#/definitions/ErrorResponse"
     
     delete:
       description: deletes a user by id
@@ -297,6 +331,10 @@ paths:
             $ref: "#/definitions/ErrorResponse"
         404:
           description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
           schema:
             $ref: "#/definitions/ErrorResponse"
     
@@ -325,6 +363,10 @@ paths:
             $ref: "#/definitions/ErrorResponse"
         404:
           description: Not found
+          schema:
+            $ref: "#/definitions/ErrorResponse"
+        403:
+          description: Forbidden
           schema:
             $ref: "#/definitions/ErrorResponse"
         
