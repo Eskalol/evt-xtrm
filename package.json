@@ -1,6 +1,6 @@
 {
   "name": "evt-xtrm",
-  "version": "0.0.6.1",
+  "version": "0.0.7",
   "description": "Event xtreme mongoDB and rest api with swagger",
   "keywords": [
     "swagger",
