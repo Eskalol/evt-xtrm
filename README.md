@@ -13,9 +13,9 @@ You can use a local database or external such as mlab.com.
 ## Local MongoDB
 1. Install mongodb https://docs.mongodb.com/v3.0/administration/install-on-linux/
 2. create db user
-	```{r, engine='bash', count_lines}
-	$ mongo evt-xtrm-db --eval 'db.createUser({user: "test", pwd: "test", roles: [ { role: "readWrite", db: "config" } ]});'
-	```
+```{r, engine='bash', count_lines}
+$ mongo evt-xtrm-db --eval 'db.createUser({user: "test", pwd: "test", roles: [ { role: "readWrite", db: "config" } ]});'
+```
 
 ## External MongoDB
 Just export your connection url to environment
