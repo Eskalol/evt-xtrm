@@ -1,6 +1,7 @@
 var should = require('should');
 var request = require('supertest');
 var server = require('../../../app');
+var User = require('../../../models/User');
 
 describe('controllers', function() {
   
@@ -68,7 +69,7 @@ describe('controllers', function() {
 
           done();
         });
-      })
+      });
     });
 
   });

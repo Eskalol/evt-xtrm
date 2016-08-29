@@ -27,11 +27,17 @@
     "passport-restify": "~1.0.1"
   },
   "devDependencies": {
+    "coveralls": "^2.11.12",
+    "istanbul": "^0.4.5",
+    "jscoverage": "^0.6.0",
+    "jshint": "^2.9.3",
+    "mocha": "^3.0.2",
+    "mocha-lcov-reporter": "^1.2.0",
     "should": "^11.1.0",
     "supertest": "^2.0.0"
   },
   "scripts": {
     "start": "node app.js",
-    "test": "swagger project test"
+    "test": "make test-coveralls"
   }
 }

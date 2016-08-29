@@ -51,7 +51,7 @@ describe('controllers', function() {
 
           done();
         });
-      })
+      });
     });
 
     describe('PATCH /api/event/1', function() {
@@ -65,7 +65,7 @@ describe('controllers', function() {
 
           done();
         });
-      })
+      });
     });
   });
 });

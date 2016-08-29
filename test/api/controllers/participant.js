@@ -33,7 +33,7 @@ describe('controllers', function() {
 
           done();
         });
-      })
+      });
     });
 
     describe('PATCH /api/participant/1', function() {
@@ -47,7 +47,7 @@ describe('controllers', function() {
 
           done();
         });
-      })
+      });
     });
   });
 });
