@@ -22,6 +22,36 @@ Just export your connection url to environment
 ```{r, engine='bash', count_lines}
 $ export MONGO_URL=[your mongodb url]
 ```
+# Set up your server
+```js
+server = require('evt-xtrm')({
+	passport: {
+		enable: true,
+		permissionSecurity: true,
+		secret: [your secret for passport],
+		facebook: {
+			enable: truem
+			AppID: [app id], //Option could be set in environment
+			AppSecret: [app secret] //Optional could be set in environment
+		},
+		baseUrl: [Base url] //Optional is localhost by default.
+	}
+});
+// then use your server!
+server.get(...
+```
+
+# Environment variables
+Here is a list of environment variables you could set
+```{r, engine='bash', count_lines}
+$ export process.env.PORT=[Port to listen on]
+$ export FACEBOOK_APPID=[AppID]
+$ export FACEBOOK_APPSECRET=[AppSecret]
+```
+# How to obtain facebook App ID and Secret
+Create a new app on https://developers.facebook.com/.
+Remember to set on your Site URL(http://localhost:10010 for dev)
+
 
 How to contribute
 ====================
@@ -48,7 +78,7 @@ require('evt-xtrm')({
 		permissionSecurity: false,
 		...
 	}
-})
+});
 
 ```
 Rest of the settings is optional, the reason why permissionSecurity should be set to false is because it is a custom middleware which is not integrated with swagger. This is just a temporary solution and will be fixed when swagger implement cookie session auth.
