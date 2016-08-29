@@ -29,7 +29,7 @@ paths:
           schema:
             $ref: "#/definitions/EventListResponse"
     post:
-      description: Create a new event
+      description: Create a new event admin permission only
       operationId: createEvent
       parameters:
         - name: title
@@ -59,6 +59,7 @@ paths:
           schema:
             $ref: "#/definitions/GeneralResponse"
           
+          
   /api/event/{id}:
     x-swagger-router-controller: event
     get:
@@ -75,11 +76,66 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/EventResponse"
-        
         default:
           description: Error
           schema:
             $ref: "#/definitions/EventErrorResponse"
+    
+    patch:
+      description: partial update need admin permission only
+      parameters:
+        - name: id
+          in: path
+          description: id of event to patch
+          required: true
+          type: string
+        - name: title
+          in: formData
+          description: title of event
+          required: false
+          type: string
+        - name: description
+          in: formData
+          description: description of event
+          required: false
+          type: string
+        - name: date
+          in: formData
+          description: date of event
+          type: string
+          format: date-time
+          required: false
+        - name: limit
+          in: formData
+          description: max amount of participants
+          type: integer
+          required: false
+      
+      responses:
+        200:
+          description: Success
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/EventErrorResponse"
+    
+    delete:
+      description: deletes an event admin permission only
+      parameters:
+        - name: id
+          in: path
+          description: event id
+          required: true
+          type: string
+      responses:
+        200:
+          description: Success
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/EventErrorResponse"
+              
+          
   /api/participant/{event}:
     x-swagger-router-controller: participant
     get:
@@ -95,7 +151,48 @@ paths:
           description: Success
           schema:
             $ref: "#/definitions/ParticipantListResponse"
-  
+    
+    post:
+      description: Add participant to event
+      parameters:
+        - name: event
+          in: path
+          description: event id
+          required: true
+          type: string
+        - name: user
+          in: formData
+          description: user id, automatic for other than admins
+          type: integer
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+    
+    delete:
+      description: remove participant from event
+      parameters:
+        - name: event
+          in: path
+          description: event id
+          required: true
+          type: string
+        - name: user
+          in: formData
+          description: user to remove from event
+          type: integer
+          required: true
+      responses: 
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/GeneralResponse"
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/EventErrorResponse"
+
   
   /hello:
     # binds a127 app logic to a route
