@@ -81,4 +81,4 @@ require('evt-xtrm')({
 });
 
 ```
-Rest of the settings is optional, the reason why permissionSecurity should be set to false is because it is a custom middleware which is not integrated with swagger. This is just a temporary solution and will be fixed when swagger implement cookie session auth.
+Rest of the settings is optional. The reason why permissionSecurity should be set to false is because we are using a custom middleware which is not integrated with swagger. This is just a temporary solution and will be fixed when swagger implement cookie session auth.
