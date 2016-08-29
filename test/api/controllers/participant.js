@@ -4,31 +4,13 @@ var server = require('../../../app');
 
 describe('controllers', function() {
   
-  describe('event', function() {
+  describe('participant', function() {
     
-    describe('GET /api/event', function() {
 
-      it('should return a list', function(done) {
-        request(server)
-          .get('/api/event')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .end(function(err, res) {
-            should.not.exist(err);
-
-            should.exist(res.body.events);
-            
-            done();
-          });
-      });
-
-    });
-
-    describe('POST /api/event', function() {
+    describe('POST /api/participant/1', function() {
       it('should Forbidden 403', function(done) {
         request(server)
-        .post('/api/event')
+        .post('/api/participant')
         .set('Accept', 'application/json')
         .expect('Content-Type', '/json/')
         .expect(403)
@@ -40,10 +22,10 @@ describe('controllers', function() {
       });
     });
 
-    describe('DELETE /api/event/1', function() {
+    describe('DELETE /api/participant/1', function() {
       it('should Forbidden 403', function(done) {
         request(server)
-        .delete('/api/event/1')
+        .delete('/api/participant/1')
         .set('Accept', 'application/json')
         .expect('Content-Type', '/json/')
         .expect(403)
@@ -54,10 +36,10 @@ describe('controllers', function() {
       })
     });
 
-    describe('PATCH /api/event/1', function() {
+    describe('PATCH /api/participant/1', function() {
       it('should Forbidden 403', function(done) {
         request(server)
-        .patch('/api/event/1')
+        .patch('/api/participant/1')
         .set('Accept', 'application/json')
         .expect('Content-Type', '/json/')
         .expect(403)

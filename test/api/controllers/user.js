@@ -4,20 +4,18 @@ var server = require('../../../app');
 
 describe('controllers', function() {
   
-  describe('event', function() {
+  describe('user', function() {
     
-    describe('GET /api/event', function() {
+    describe('GET /api/user', function() {
 
-      it('should return a list', function(done) {
+      it('should Forbidden 403', function(done) {
         request(server)
-          .get('/api/event')
+          .get('/api/user')
           .set('Accept', 'application/json')
           .expect('Content-Type', /json/)
-          .expect(200)
+          .expect(403)
           .end(function(err, res) {
             should.not.exist(err);
-
-            should.exist(res.body.events);
             
             done();
           });
@@ -25,47 +23,53 @@ describe('controllers', function() {
 
     });
 
-    describe('POST /api/event', function() {
+    describe('GET /api/user/1', function() {
+
       it('should Forbidden 403', function(done) {
         request(server)
-        .post('/api/event')
+          .get('/api/user')
+          .set('Accept', 'application/json')
+          .expect('Content-Type', /json/)
+          .expect(403)
+          .end(function(err, res) {
+            should.not.exist(err);
+            
+            done();
+          });
+      });
+
+    });
+
+
+    describe('POST /api/user', function() {
+      it('should Forbidden 403', function(done) {
+        request(server)
+        .post('/api/user')
         .set('Accept', 'application/json')
-        .expect('Content-Type', '/json/')
+        .expect('Content-Type', 'application/json')
         .expect(403)
         .end(function(err, res) {
-          // console.log(res);
+          should.not.exist(err);
 
           done();
         });
       });
     });
 
-    describe('DELETE /api/event/1', function() {
+    describe('DELETE /api/user/1', function() {
       it('should Forbidden 403', function(done) {
         request(server)
-        .delete('/api/event/1')
+        .delete('/api/user/1')
         .set('Accept', 'application/json')
-        .expect('Content-Type', '/json/')
+        .expect('Content-Type', 'application/json')
         .expect(403)
         .end(function(err, res) {
+          should.not.exist(err);
 
           done();
         });
       })
     });
 
-    describe('PATCH /api/event/1', function() {
-      it('should Forbidden 403', function(done) {
-        request(server)
-        .patch('/api/event/1')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', '/json/')
-        .expect(403)
-        .end(function(err, res) {
-
-          done();
-        });
-      })
-    });
   });
 });
