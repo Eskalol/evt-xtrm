@@ -170,6 +170,7 @@ paths:
     x-swagger-router-controller: participant
     get:
       description: Lists all participants of an event
+      operationId: listParticipantsOnEvent
       parameters:
         - name: event
           in: path
@@ -188,6 +189,7 @@ paths:
     
     post:
       description: Add participant to event
+      operationId: postParticipantOnEvent
       parameters:
         - name: event
           in: path
@@ -199,7 +201,7 @@ paths:
           description: user id, automatic for other than admins
           type: integer
       responses:
-        200:
+        201:
           description: Success
           schema:
             $ref: "#/definitions/ParticipantResponse"
@@ -209,6 +211,7 @@ paths:
             $ref: "#/definitions/ErrorResponse"
     delete:
       description: remove participant from event
+      operationId: deleteParticipantOnEvent
       parameters:
         - name: event
           in: path
@@ -322,7 +325,7 @@ definitions:
             _id:
               type: string
             event:
-              type: string
+              type: integer
             user:
               type: integer
               
@@ -333,7 +336,7 @@ definitions:
       _id:
         type: string
       event:
-        type: string
+        type: integer
       user:
         type: integer
 #############
