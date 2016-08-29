@@ -50,7 +50,7 @@ $ export FACEBOOK_APPSECRET=[AppSecret]
 ```
 # How to obtain facebook App ID and Secret
 Create a new app on https://developers.facebook.com/.
-Remember to set on your Site URL(http://localhost:10010 for dev)
+Remember to set your Site URL(http://localhost:10010 for dev)
 
 
 How to contribute
