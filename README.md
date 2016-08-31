@@ -1,6 +1,6 @@
 Evt-xtrm
 ============
-[![Build Status](https://travis-ci.org/Eskalol/evt-xtrm.svg?branch=master)](https://travis-ci.org/Eskalol/evt-xtrm)[![Dependencies](https://david-dm.org/Eskalol/evt-xtrm.svg)](https://david-dm.org/Eskalol/evt-xtrm)[![Dev Dependencies](https://david-dm.org/Eskalol/evt-xtrm/dev-status.svg)](https://david-dm.org/Eskalol/evt-xtrm?type=dev)[![Coverage Status](https://coveralls.io/repos/github/Eskalol/evt-xtrm/badge.svg?branch=master)](https://coveralls.io/github/Eskalol/evt-xtrm?branch=master)
+[![npm version](https://badge.fury.io/js/evt-xtrm.svg)](https://badge.fury.io/js/evt-xtrm)[![Build Status](https://travis-ci.org/Eskalol/evt-xtrm.svg?branch=master)](https://travis-ci.org/Eskalol/evt-xtrm)[![Dependencies](https://david-dm.org/Eskalol/evt-xtrm.svg)](https://david-dm.org/Eskalol/evt-xtrm)[![Dev Dependencies](https://david-dm.org/Eskalol/evt-xtrm/dev-status.svg)](https://david-dm.org/Eskalol/evt-xtrm?type=dev)[![Coverage Status](https://coveralls.io/repos/github/Eskalol/evt-xtrm/badge.svg?branch=master)](https://coveralls.io/github/Eskalol/evt-xtrm?branch=master)
 
 
 # Install evt-xtrm module
